@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"forum/controller"
 	"net/http"
+	"os"
 	"path"
 	"strings"
 
@@ -67,6 +68,10 @@ func (cr *customRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	router := &customRouter{getMux(), make(map[string]http.HandlerFunc)}
 
 	ct := controller.NewController()
@@ -83,7 +88,7 @@ func main() {
 	router.RegisterRoute("/api/signout", signOutHandler)
 	router.RegisterRoute("/api/home", HomeHandler)
 	server := &http.Server{
-		Addr:    ":8080",
+		Addr:    ":" + port,
 		Handler: router,
 	}
 
