@@ -1,8 +1,8 @@
 import { showToast } from "./toast.js";
 import { SetError } from "./utils.js";
 import { navigateTo,router } from "./index.js";
-import { checkLoginOrEmail, student } from "./query.js";
-const API_BASE_URL = 'http://localhost:8080';
+import { checkLoginOrEmail,student } from "./query.js";
+const API_BASE_URL = 'https://graphql-production-abc0.up.railway.app/'
 
 // Fonction générique pour effectuer des requêtes GET
 
@@ -119,7 +119,7 @@ async function getHome ( endpoint,param ) {
 }
 async function getSignin ( endpoint,param ) {
     try
-    {   
+    {
         let response = await get( `${ endpoint }${ param.id == null ? "" : "/" + param.id }` );
         return response
     } catch ( error )
@@ -130,11 +130,11 @@ async function getSignin ( endpoint,param ) {
 async function getSignout ( endpoint,param ) {
     try
     {
-    localStorage.clear()
-    student.totalXP=0
-    student.level=0
+        localStorage.clear()
+        student.totalXP = 0
+        student.level = 0
 
-    console.log(document.cookie)
+        console.log( document.cookie )
         let response = await get( `${ endpoint }${ param.id == null ? "" : "/" + param.id }` );
 
         return response
@@ -142,7 +142,7 @@ async function getSignout ( endpoint,param ) {
     {
         handleErr( error )
     }
-    
+
 }
 async function getUserDetail ( endpoint,param ) {
     try
@@ -214,7 +214,8 @@ let getFormData = ( e ) => {
 
 let signout = async ( endpoint,data ) => {
     try
-    {             let response = await post( endpoint,data )
+    {
+        let response = await post( endpoint,data )
         document.cookie = '';
         return response
     } catch ( error )
@@ -224,30 +225,32 @@ let signout = async ( endpoint,data ) => {
 }
 let signin = async ( endpoint,data ) => {
     try
-    {         console.log(document.cookie)
-        
-    
+    {
+        console.log( document.cookie )
+
+
         let response = await post( endpoint,data )
         if ( response.url )
-        {              
+        {
 
-            const res = await fetch('https://learn.zone01dakar.sn/api/auth/signin', {
+            const res = await fetch( 'https://learn.zone01dakar.sn/api/auth/signin',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Basic ' + window.btoa(response.data.email + ':' + response.data.password),
+                    Authorization: 'Basic ' + window.btoa( response.data.email + ':' + response.data.password ),
                 },
-            });
-        
-            if (!res.ok) {
+            } );
+
+            if ( !res.ok )
+            {
                 const err = await res.json();
-               showToast(err.error)
+                showToast( err.error )
                 return;
             }
             const data = await res.json();
-            
-            document.cookie = `token=${data};`;  
-            localStorage.setItem('login', response.data.email);
+
+            document.cookie = `token=${ data };`;
+            localStorage.setItem( 'login',response.data.email );
 
 
         }
