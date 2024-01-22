@@ -1,0 +1,96 @@
+.menu-container .user-infos{
+    display: block;
+    max-width: 80%;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px var(--shadow-color-lg);
+    margin: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    text-align: center;
+    padding-top: 5px;
+}
+.menu-container .user-infos p {
+    font-size: 14px;
+    margin:7px;
+    text-align: center;
+    font-family: Lobster, Monserrat, serif;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.menu-container .user-infos .profile_img {
+    width: 80px;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.menu-container .category-list{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+.menu-container .category-list hr{
+    width: 80%;
+    border: 1px solid var(--text-light-color );
+    opacity: 0.2;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+.menu-container .category-list a{
+    background-color: var(--green-light);
+    color: var(--text-light-color);
+    width: 80%;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-decoration: none;
+    box-shadow: 2px 5px 5px var(--black-shadow);
+    font-family: Rajdhani, Lobster, Monserrat, serif;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+.menu-container .category-list a:hover{
+    background-color: var(--text-light-color);
+    color: var(--green-light);
+}
+.menu-container .category-list a i{
+    font-size: 15px;
+}
+
+/* Pour la responsivite */
+@media only screen and (max-width:750px) {
+    .page-container .menu-container > *{
+        display: none;
+    }
+    .page-container .menu-container .category-list{
+        width: 100%;
+        display: block;
+        white-space: nowrap;
+        flex-direction: row;
+        position: absolute;
+        padding: 10px 0 25px  0;
+        margin: 0;
+        margin-top: 60px;
+        overflow: scroll;
+        text-align: center;
+    }
+    .page-container .menu-container .category-list hr{
+        display: none;
+    }
+    .page-container .menu-container .category-list a{
+        margin: 0;
+        display: inline;
+        margin: 0 5px 0 5px;
+    }
+}

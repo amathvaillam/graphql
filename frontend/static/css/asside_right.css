@@ -1,0 +1,152 @@
+
+/* Infos At the right */
+.body .infos-container{
+    width: 20vw;
+    min-width: 200px;
+    box-shadow: -5px 0px 5px var(--shadow-color-sm);
+    background:linear-gradient(0deg, var(--transparent-dark-green), var(--transparent-dark-green)), url(https://img.freepik.com/free-photo/blue-smooth-wall-textured-background_53876-106133.jpg);
+    background-size:cover;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    text-shadow: 5px 5px 5px var(--black-shadow);
+}
+.body .infos-container > * {
+    color: var(--text-light-color);
+    font-weight: 500;
+    font-family: Lobster, Monserrat, serif;
+    letter-spacing: 1px;
+    padding: none;
+}
+.body .infos-container > a > img{
+    width: 50px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px var(--black-shadow);
+    background-color: var(--primary-color);
+}
+.body .infos-container .logo-container img{
+    border-radius: 50%;
+}
+.body .infos-container > span{
+    font-size: 50px;
+}
+.body .infos-container a.important{
+    /* background-color: var(--green-light); */
+    background-color: var(--green-light);
+    animation: mymove 5s infinite;
+    
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    text-shadow: none;
+    box-shadow: 5px 5px 5px var(--black-shadow);
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@keyframes mymove {
+    from {
+        background-color: var(--green-light);
+        color: var(--text-light-color );
+    }
+    to {
+        background-color: var(--text-light-color);
+        color: var(--green-light);
+    }
+}
+.body .infos-container .publisher-infos, .body .infos-container .logo-container{
+    background-color: transparent;
+    box-shadow: none;
+    text-align: center;
+    display: inline-block;
+}
+.body .infos-container .publisher-infos p{
+    padding: 0;
+    margin: 0;
+    font-family: Lobster, Monserrat, serif;
+}
+.body .infos-container .publisher-infos  span{
+    font-size: 12px;
+}
+
+/* If User is connected */
+.infos-container .user-infos{
+    font-size: 8px;
+    max-width: 80%;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px var(--shadow-color-lg);
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    margin-top: 5px;
+    text-align: left;
+    padding-top: 5px;
+}
+.infos-container .user-infos p {
+    color: var(--text-dark-color);
+    text-shadow: none;
+}
+.infos-container .user-infos img {
+    width: 80px;
+    border-radius: 50%;
+    margin: auto;
+}
+/* Add post btn */
+.infos-container .btn.add{
+    background-color: var(--green-light);
+    color: var(--text-light-color);
+    border: none;
+    border-radius: 5px;
+    /* word-spacing: 3px; */
+    font-weight: 500;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Jost,Montserrat,Ubuntu,Roboto, serif;
+    text-transform: uppercase;
+    font-weight: bolder;
+    padding: 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.infos-container .btn.add i{
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.filter-btn-container{
+    margin-top: 40px;
+}
+.filter-btn-container button{
+    background-color: var(--green-light);
+    color: var(--text-light-color);
+    padding: 8px;
+    border-radius: 10px;
+    border: none;outline: none;
+    width:90%;
+    display: flex;
+    margin: auto;
+    box-shadow: 5px 5px 5px var(--black-shadow);
+    cursor: pointer;
+}
+.filter-btn-container button i{
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+/* Pour la responsivite */
+@media only screen and (max-width:1000px) {
+    .body .infos-container{
+        /* flex: 1; */
+        width: 100%;
+        height: auto;
+    }
+}

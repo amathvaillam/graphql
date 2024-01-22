@@ -1,0 +1,73 @@
+.add_comment_popup{
+    
+}
+.add_comment_popup .hideAddComment{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+}
+.add_comment_popup .modal{
+    width: 50vw;
+    /* height: 60vh; */
+    min-width: 300px;
+    /* min-height: 400px; */
+    max-height: 80vh;
+    background-color: var(--primary-color);
+    box-shadow: var(--black-shadow);
+    padding: 10px;
+    border-radius: 10px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow: scroll;
+}
+.add_comment_popup .modal > .form-input{
+    display: flex;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+}
+.add_comment_popup h3{
+    text-align: center;
+}
+.add_comment_popup label{
+    width: 12%;
+    min-width: 65px;
+    font-size: 14px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 10px;
+}
+.add_comment_popup .input-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid var(--input-border);
+    overflow: hidden;
+    padding: 5px;
+    background-color: var(--input-backgroud);
+}
+.add_comment_popup .input-container textarea,.add_comment_popup .input-container input{
+    width: 100%;
+    border: none;
+    font-size: 14px;
+}
+.add_comment_popup input[type="file"] {
+    display: none;
+}
+.add_comment_popup .custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.add_comment_popup .custom-file-upload img{
+    height: 70px;
+    border-radius: 6px;
+}

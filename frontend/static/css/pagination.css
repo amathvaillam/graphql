@@ -1,0 +1,23 @@
+.pagination-container{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+.pagination-container a {
+    width: 36px;
+    height: 36px;
+    margin: 5px;
+    color: var(--green-light);
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-weight: bold;
+    text-decoration: none;
+}
+.pagination-container a.active {
+    color: var(--primary-color);
+    background-color: var(--green-light);
+}

@@ -1,0 +1,58 @@
+
+.icon{
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: var(--fa-display, inline-block);
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    
+    font-family: 'Font Awesome 6 Free'; 
+}
+
+.icon {
+    font-weight: 900; 
+}
+.icon.regular {
+    font-weight: 400;
+}
+
+/* The icons */
+.search-icon::before {
+    content: "\f002"; 
+}
+.chage-theme-icon::before {
+    content: "\f042"; 
+}
+.filter-icon::before {
+  content: "\f1de"; 
+}
+.signin-icon::before {
+    content: "\f2f6"; 
+}
+.signout-icon::before {
+    content: "\f2f5"; 
+}
+.earth-icon::before {
+    content: "\f57c"; 
+}
+.like-icon::before {
+    content: "\f164"; 
+}
+.dislike-icon::before {
+    content: "\f165"; 
+}
+.comment-icon::before {
+    content: "\f075"; 
+}
+.category-icon::before {
+    content: "\f009";
+    opacity: 0.8;
+}
+.plus-icon::before {
+    content: "\f055"; 
+}
+.check::before {
+    content: "\f058";
+}

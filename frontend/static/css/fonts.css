@@ -1,0 +1,37 @@
+/* Icons fonts */
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: block;
+    src: url("../fonts/icons-solid.woff2"), url("../fonts/icons-solid.ttf") format("truetype"); }
+
+
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("../fonts/icons-regular.woff2") format("woff2"), url("../fonts/icons-regular.ttf") format("truetype"); }
+
+/* Text fonts */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Regular.ttf');
+    /* font-weight: 400; */
+}
+@font-face {
+    font-family: 'Lobster';
+    src: url('../fonts/Lobster-Regular.ttf');
+    /* font-weight: 400; */
+}
+@font-face {
+    font-family: 'Rajdhani';
+    src: url('../fonts/Rajdhani-Regular.ttf');
+    /* font-weight: 400; */
+}
+/* @font-face {
+    font-family: 'Jost';
+    src: url('../fonts/Jost-Regular.ttf');
+    font-weight: 400;
+} */

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>01 Forum</title>
+        <link rel="icon" type="image/x-icon" href="01%20Forum_files/icon.png">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/fonts.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/icones.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/variables.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/style.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/navbar.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/toast.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/pagination.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/accueil.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/post.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/login_form.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/asside_right.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/asside_left.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/sign_in.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/add_post.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/filter_popup.css">
+        <link rel="stylesheet" type="text/css" href="01%20Forum_files/add_comment.css">
+    </head>
+
+<body>
+    
+    
+    <div class="page-container">
+        
+            
+    <div class="menu-container">
+        <div class="icon-container">
+            <a href="http://localhost:8080/">
+                <img src="01%20Forum_files/icon.png" alt="">
+            </a>
+        </div>
+        
+            <a class="user-infos" href="http://localhost:8080/userdetail/9/1">
+                <img class="profile_img" src="01%20Forum_files/user_default.png" alt="">
+                <p>fall</p>
+            </a>
+        
+        <div class="category-list">
+            <hr>
+            
+                
+                    <a href="http://localhost:8080/filterCat/1/1">
+                        <i class="icon category-icon" aria-hidden="true"></i>
+                        Politic
+                    </a>
+                
+                    <a href="http://localhost:8080/filterCat/1/5">
+                        <i class="icon category-icon" aria-hidden="true"></i>
+                        Sport
+                    </a>
+                
+                    <a href="http://localhost:8080/filterCat/1/2">
+                        <i class="icon category-icon" aria-hidden="true"></i>
+                        Science
+                    </a>
+                
+            
+        </div>
+    </div>
+    <script>
+        let ListCategory = []
+        
+            ListCategory.push({Id:"1",Name:"Politic"})
+        
+            ListCategory.push({Id:"5",Name:"Sport"})
+        
+            ListCategory.push({Id:"2",Name:"Science"})
+        
+    </script>
+
+        
+        <div class="body-container">
+            
+                
+    <div class="toast-container">
+    </div>
+
+                
+    <div class="navbar">
+        <div class="search-bar-container">
+            <label for="search">
+                <i class="icon search-icon"></i>
+            </label>
+            <input type="text" id="search" placeholder="Rechercher" onclick="showFilterPopup()">
+
+            <button class="chage-theme" onclick="showFilterPopup()">
+                <i class="icon filter-icon"></i>
+            </button>
+        </div>
+        <div class="btn-container-nav">
+            
+    <form class="add_post_popup hidden none" method="post" action="/post" enctype="multipart/form-data">
+        <div class="overlay" onclick="hideAddPostPopup()"></div>
+        <div class="modal">
+            <h3>Add a new post</h3>
+            <div class="form-input">
+                <label for="add_post_title">Title</label>
+                <div class="input-container">
+                    <input required="" name="title" id="add_post_title" type="text" placeholder="My title">
+                </div>
+            </div>
+            <div class="form-input">
+                <label for="add_post_content">Content</label>
+                <div class="input-container">
+                    <textarea required="" name="content" id="add_post_content" type="text" placeholder="My content" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="form-input">
+                <label for="add_post_img">Category</label>
+                <input required="" name="categories" type="text" class="none">
+                <div class="input-container">
+                    <label for="myInput" class="catagories-list">
+                        <span class="selected">
+                        </span>
+                        <input id="myInput" list="categories" oninput="selectCategory()">
+                        <datalist id="categories">
+                            
+                                
+                                    <option value="Politic">Politic</option>
+                                
+                                    <option value="Sport">Sport</option>
+                                
+                                    <option value="Science">Science</option>
+                                
+                            
+                        </datalist>
+                    </label>   
+                </div>
+            </div>
+            <div class="form-input">
+                <label for="add_post_img">image</label>
+                <div class="input-container">
+                    <label class="custom-file-upload">
+                        <input name="image" id="add_post_img" type="file" accept=".png, .jpg, .jpeg, .gif, .webp" onchange="showSelectedImage()">
+                        <img src="01%20Forum_files/no_img.jpg" alt="...">
+                    </label>                
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="btn submit-form">Ajouter</button>
+            </div>
+        </div>
+    </form>
+
+            
+    <form class="filter_popup hidden" method="post" action="/userdetail/9/1">
+        <div class="overlay" onclick="hideFilterPopup()"></div>
+        <div class="modal">
+            <h3>Filter Posts</h3>
+            <p>Filter by category</p>
+            <div class="form-input">
+                <label for="categories">Category</label>
+                <div class="input-container">
+                    <select id="categories" name="idCat">
+                        
+                            <option disabled="disabled" selected="selected" value="">Choose a category</option>
+                            
+                                <option value="1">Politic</option>
+                            
+                                <option value="5">Sport</option>
+                            
+                                <option value="2">Science</option>
+                            
+                        
+                    </select>
+                </div>
+            </div>
+            <p>Filter by likes number</p>
+            <div class="row">
+                <div class="col">
+                    <div class="form-input">
+                        <label for="add_post_title">Likes min</label>
+                        <div class="input-container">
+                            <input name="likeMin" id="add_post_title" type="number" min="0" placeholder="Enter a number">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-input">
+                        <label for="add_post_content">Likes max</label>
+                        <div class="input-container">
+                            <input name="likeMax" id="add_post_title" type="number" min="0" placeholder="Enter a number">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>Filter by likes creation date</p>
+            <div class="row">
+                <div class="col">
+                    <div class="form-input">
+                        <label for="add_post_content">Date min</label>
+                        <div class="input-container">
+                            <input name="dateMin" id="add_post_title" type="date" min="0" placeholder="Enter a date">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-input">
+                        <label for="add_post_content">Date max</label>
+                        <div class="input-container">
+                            <input name="dateMax" id="add_post_title" type="date" min="0" placeholder="Enter a date">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="btn submit-form">Filtrer</button>
+            </div>
+        </div>
+    </form>
+
+            <button class="chage-theme" onclick="changeThemeMod()">
+                <i class="icon chage-theme-icon"></i>
+            </button>
+            
+                <a class="btn " href="http://localhost:8080/signout">
+                    <i class="icon signout-icon"></i>
+                    Disconnect
+                </a>
+            
+        </div>
+    </div>
+
+            
+            <div class="body">
+                
+                    
+    <div class="posts-container">
+        
+        
+        
+        
+            
+    
+        <div class="pagination-container">
+            
+        </div>
+        <script>
+            var PaginationData = {NumPost:"4",Limit:"10",CurrentPage:"1"}
+        </script>
+    
+
+        
+        
+            
+                <a class="post post16" href="http://localhost:8080/postdetail/16">
+                    <div class="post-header">
+                        <img src="01%20Forum_files/user_default.png" alt="...">
+                        <p>
+                            fall
+                            
+                                
+                                    <button>
+                                        Science
+                                    </button>
+                                
+                            
+                            <br>
+                            <span>
+                                Published by <b>@fall</b> 2023-09-14 18:28:10
+                                <i class="icon earth-icon"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="content">
+                        <div class="image-container">
+                            <img class="miniature" src="01%20Forum_files/default.jpg" alt="">
+                        </div>
+                        <p class="title">lam</p>
+                    </div>
+                    <div class="post-footer">
+                        <hr>
+                        <div class="actions">
+                            <div class="vote">
+                                <button>
+                                    
+                                    Likes
+                                    <span>(1)</span>
+                                </button>
+                                <button>
+                                    
+                                    Dislikes
+                                    <span>(0)</span>
+                                </button>
+                            </div>
+                            <hr>
+                            <div>
+                                <button>
+                                    <i class="icon regular comment-icon"></i>
+                                    Comments
+                                    
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            
+                <a class="post post13" href="http://localhost:8080/postdetail/13">
+                    <div class="post-header">
+                        <img src="01%20Forum_files/user_default.png" alt="...">
+                        <p>
+                            fall
+                            
+                                
+                                    <button>
+                                        Politic
+                                    </button>
+                                
+                            
+                            <br>
+                            <span>
+                                Published by <b>@fall</b> 2023-09-11 17:42:55
+                                <i class="icon earth-icon"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="content">
+                        <div class="image-container">
+                            <img class="miniature" src="01%20Forum_files/default.jpg" alt="">
+                        </div>
+                        <p class="title">sonko</p>
+                    </div>
+                    <div class="post-footer">
+                        <hr>
+                        <div class="actions">
+                            <div class="vote">
+                                <button>
+                                    
+                                    Likes
+                                    <span>(0)</span>
+                                </button>
+                                <button>
+                                    
+                                    Dislikes
+                                    <span>(0)</span>
+                                </button>
+                            </div>
+                            <hr>
+                            <div>
+                                <button>
+                                    <i class="icon regular comment-icon"></i>
+                                    Comments
+                                    
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            
+                <a class="post post14" href="http://localhost:8080/postdetail/14">
+                    <div class="post-header">
+                        <img src="01%20Forum_files/user_default.png" alt="...">
+                        <p>
+                            fall
+                            
+                                
+                                    <button>
+                                        Sport
+                                    </button>
+                                
+                            
+                            <br>
+                            <span>
+                                Published by <b>@fall</b> 2023-09-11 17:44:47
+                                <i class="icon earth-icon"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="content">
+                        <div class="image-container">
+                            <img class="miniature" src="01%20Forum_files/default.jpg" alt="">
+                        </div>
+                        <p class="title">ffjfj</p>
+                    </div>
+                    <div class="post-footer">
+                        <hr>
+                        <div class="actions">
+                            <div class="vote">
+                                <button>
+                                    
+                                    Likes
+                                    <span>(0)</span>
+                                </button>
+                                <button>
+                                    
+                                    Dislikes
+                                    <span>(0)</span>
+                                </button>
+                            </div>
+                            <hr>
+                            <div>
+                                <button>
+                                    <i class="icon regular comment-icon"></i>
+                                    Comments
+                                    
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            
+                <a class="post post15" href="http://localhost:8080/postdetail/15">
+                    <div class="post-header">
+                        <img src="01%20Forum_files/user_default.png" alt="...">
+                        <p>
+                            fall
+                            
+                                
+                                    <button>
+                                        Politic
+                                    </button>
+                                
+                                    <button>
+                                        Science
+                                    </button>
+                                
+                                    <button>
+                                        Sport
+                                    </button>
+                                
+                            
+                            <br>
+                            <span>
+                                Published by <b>@fall</b> 2023-09-14 17:32:34
+                                <i class="icon earth-icon"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="content">
+                        <div class="image-container">
+                            <img class="miniature" src="01%20Forum_files/default.jpg" alt="">
+                        </div>
+                        <p class="title">check</p>
+                    </div>
+                    <div class="post-footer">
+                        <hr>
+                        <div class="actions">
+                            <div class="vote">
+                                <button>
+                                    
+                                    Likes
+                                    <span>(0)</span>
+                                </button>
+                                <button>
+                                    
+                                    Dislikes
+                                    <span>(0)</span>
+                                </button>
+                            </div>
+                            <hr>
+                            <div>
+                                <button>
+                                    <i class="icon regular comment-icon"></i>
+                                    Comments
+                                    
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            
+                <a class="post post15" href="http://localhost:8080/postdetail/15">
+                    <div class="post-header">
+                        <img src="01%20Forum_files/user_default.png" alt="...">
+                        <p>
+                            fall
+                            
+                                
+                                    <button>
+                                        Politic
+                                    </button>
+                                
+                                    <button>
+                                        Science
+                                    </button>
+                                
+                                    <button>
+                                        Sport
+                                    </button>
+                                
+                            
+                            <br>
+                            <span>
+                                Published by <b>@fall</b> 2023-09-14 17:32:34
+                                <i class="icon earth-icon"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="content">
+                        <div class="image-container">
+                            <img class="miniature" src="01%20Forum_files/default.jpg" alt="">
+                        </div>
+                        <p class="title">check</p>
+                    </div>
+                    <div class="post-footer">
+                        <hr>
+                        <div class="actions">
+                            <div class="vote">
+                                <button>
+                                    
+                                    Likes
+                                    <span>(0)</span>
+                                </button>
+                                <button>
+                                    
+                                    Dislikes
+                                    <span>(0)</span>
+                                </button>
+                            </div>
+                            <hr>
+                            <div>
+                                <button>
+                                    <i class="icon regular comment-icon"></i>
+                                    Comments
+                                    
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            
+                <a class="post post15" href="http://localhost:8080/postdetail/15">
+                    <div class="post-header">
+                        <img src="01%20Forum_files/user_default.png" alt="...">
+                        <p>
+                            fall
+                            
+                                
+                                    <button>
+                                        Politic
+                                    </button>
+                                
+                                    <button>
+                                        Science
+                                    </button>
+                                
+                                    <button>
+                                        Sport
+                                    </button>
+                                
+                            
+                            <br>
+                            <span>
+                                Published by <b>@fall</b> 2023-09-14 17:32:34
+                                <i class="icon earth-icon"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="content">
+                        <div class="image-container">
+                            <img class="miniature" src="01%20Forum_files/default.jpg" alt="">
+                        </div>
+                        <p class="title">check</p>
+                    </div>
+                    <div class="post-footer">
+                        <hr>
+                        <div class="actions">
+                            <div class="vote">
+                                <button>
+                                    
+                                    Likes
+                                    <span>(0)</span>
+                                </button>
+                                <button>
+                                    
+                                    Dislikes
+                                    <span>(0)</span>
+                                </button>
+                            </div>
+                            <hr>
+                            <div>
+                                <button>
+                                    <i class="icon regular comment-icon"></i>
+                                    Comments
+                                    
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            
+        
+        
+            
+    
+        <div class="pagination-container">
+            
+        </div>
+        <script>
+            var PaginationData = {NumPost:"4",Limit:"10",CurrentPage:"1"}
+        </script>
+    
+
+        
+    </div>
+
+                
+                
+                    
+    <div class="infos-container">
+        
+            <a href="http://localhost:8080/userdetail/9/1" class="publisher-infos">
+                <img src="01%20Forum_files/user_default.png" alt="">
+                <br>
+                <span>fall</span>
+            </a>
+        
+        <div class="user-infos">
+            <p>
+                <i class="icon regular comment-icon"></i>
+                Comments: <b>(1)</b>
+            </p>
+            <p>
+                <i class="icon regular like-icon"></i>
+                Likes: <b>(1)</b>
+            </p>
+            <p>
+                <i class="icon regular dislike-icon"></i>
+                Dislikes: <b>(0)</b>
+            </p>
+        </div>
+        <div class="filter-btn-container">
+            <span>Filter by</span>
+            <form method="post" action="/userdetail/9/1">
+                <input class="hidden" type="checkbox" name="isCommented">
+                <input class="hidden" checked="checked" type="checkbox" name="isLiked">
+                <button>
+                    
+                        <i class="icon regular check"></i>
+                    
+                    <span>Liked</span>
+                </button>
+            </form>
+            <form method="post" action="/userdetail/9/1">
+                <input class="hidden" type="checkbox" name="isLiked">
+                <input class="hidden" checked="checked" type="checkbox" name="isCommented">
+                <button>
+                    
+                        <i class="icon regular check"></i>
+                    
+                    <span>Commented</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+                
+            </div>
+        </div>
+    </div>
+    
+
+<script>
+    
+    let HeaderData = {StatusConnected:""}
+    let PostList = []
+    
+    let PostLikeList = []
+    
+</script>
+<script src="01%20Forum_files/script.js"></script>
+<script src="01%20Forum_files/theme.js"></script>
+<script src="01%20Forum_files/toast.js"></script>
+<script src="01%20Forum_files/pagination.js"></script>
+<script src="01%20Forum_files/add_post.js"></script>
+<script src="01%20Forum_files/filter.js"></script>
+<script src="01%20Forum_files/addComment.js"></script>
+
+
+
+</body></html>

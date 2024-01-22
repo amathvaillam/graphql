@@ -1,0 +1,34 @@
+:root{
+    /* --primary-color:white;
+    --secondary-color:gainsboro;
+    --transparent-dark-green:rgba(7, 30, 34,0.5);
+    --shadow-color-sm:rgba(100, 100, 100, 0.2);
+    --shadow-color-lg:rgba(100, 100, 100, 0.4);
+    --green-light : #1D7874;
+    --sub-title-color : gray;
+    --black-shadow : black;
+    --input-backgroud : white;
+    --searchbar-backgroud : gainsboro;
+    --input-border : rgba(100, 100, 100, 0.2);
+    --input-text : black;
+    --text-dark-color : black;
+    --text-light-color : white;
+    --toast-duration : 4s */
+    --primary-color:white;
+    --secondary-color:gainsboro;
+    --transparent-dark-green:rgba(18, 46, 69,0.5);
+    --selection-color: rgba(18, 46, 69,0.5);
+    --shadow-color-sm:rgba(100, 100, 100, 0.2);
+    --shadow-color-lg:rgba(100, 100, 100, 0.4);
+    --green-light : #256994;
+    --sub-title-color : gray;
+    --black-shadow : black;
+    --input-backgroud : white;
+    --searchbar-backgroud : gainsboro;
+    --input-border : rgba(100, 100, 100, 0.2);
+    --input-border-filter : rgba(100, 100, 100, 0.2);
+    --input-text : black;
+    --text-dark-color : black;
+    --text-light-color : white;
+    --toast-duration : 4s
+}

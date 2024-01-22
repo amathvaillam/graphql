@@ -1,0 +1,78 @@
+body{
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark-color);
+}
+.page-container{
+    display: flex;
+    width: 100%;
+    /* min-height: 100vh; */
+    height: 100vh;
+    background-color: var(--secondary-color);
+}
+.body-container{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+}
+/* The menu */
+.menu-container{
+    width: 20vw;
+    min-width: 200px;
+    background:linear-gradient(180deg, var(--primary-color) 250px, var(--transparent-dark-green) 250px), url(https://img.freepik.com/free-photo/blue-smooth-wall-textured-background_53876-106133.jpg);
+    box-shadow: 5px 0px 5px var(--small-shadow-color);
+    overflow-y: scroll;
+}
+.menu-container .icon-container{
+    display: flex;
+    text-align: center;
+}
+.menu-container .icon-container img{
+    width: 25%;
+    margin: auto;
+    margin-top: 5px;
+    border-radius: 50%;
+}
+.input-container input,.input-container textarea{
+    border: none;
+    background-color: transparent;
+    outline: none;
+    width: 100%;
+    color: var(--input-text);
+    padding-left: 10px;
+}
+/* Body */
+.body{
+    flex:1;
+    display: flex;
+    overflow-y: scroll;
+}
+
+/* Pour la responsivite */
+@media only screen and (max-width: 1000px) {
+    .page-container .body-container{
+        max-height: 100vh;
+        overflow-y: scroll;
+    }
+    .page-container .body-container .body {
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width:750px) {
+    .page-container{
+        flex-direction: column;
+        height: fit-content;
+        max-height: none;
+    }
+    .page-container .body-container {
+        max-height: none;
+    }
+    .page-container .body-container .posts-container{
+        height: auto;
+        max-height: none;
+    }
+    /* .page-container .body-container .posts-container{
+        order: 2;
+    } */
+}

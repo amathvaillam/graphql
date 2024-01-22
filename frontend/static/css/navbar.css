@@ -1,0 +1,102 @@
+
+/* Navbar */
+@keyframes blink {
+    0% { background-color: white; }
+    50% { background-color: rgb(0, 0, 0); }
+    100% { background-color: white; }
+ }
+ 
+ .blink {
+    background-color: white;
+ }
+.body-container .navbar{
+    height: 8vh;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    box-shadow: 2px 5px 5px var(--shadow-color-sm);
+}
+.body-container .navbar .logo-container img{
+    width: 40px;
+    border-radius: 50px;
+}
+.navbar .search-bar-container {
+    color: var(--input-text);
+    flex: 1;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+}
+.navbar .search-bar-container input{
+    border: none;
+    flex: 1;
+    padding: 5px;
+    margin: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+    color: var(--input-text);
+    background-color: var(--searchbar-backgroud);
+}
+.search-bar-container input:focus{
+    border: var(--input-border) 2px solid;
+    outline: none;
+}
+.navbar .btn-container-nav {
+    flex: 1;
+    display: flex;
+    padding-right: 15px;
+}
+.navbar .chage-theme{
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: auto;
+    color: var(--text-dark-color);
+}
+.navbar .btn-container-nav .btn{
+    background-color: var(--green-light);
+    color: var(--text-light-color);
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    word-spacing: 5px;
+    font-weight: 500;
+}
+
+@media only screen and (max-width:750px) {
+    .body-container .navbar{
+        margin-bottom: 55px;
+    }
+    .body-container .navbar .logo-container{
+        display: inline;
+    }
+    .body-container .navbar .search-bar-container label{
+        display: none;
+    }
+    .navbar .chage-theme{
+        margin-left: 0;
+    }
+    .navbar .search-bar-container{
+        margin-left: auto;
+        justify-content: end;
+    }
+    .navbar .btn-container-nav{
+        display: inline;
+        width: 110px;
+        margin: 0;
+        padding: 0;
+        max-width: fit-content;
+        margin-right: 10px;
+    }
+}
+
+@media only screen and (max-width:500px) {
+    .body-container .navbar .search-bar-container input{
+        display: none;
+    }
+    .body-container .navbar .search-bar-container{
+        max-width: 50px;
+    }
+}
