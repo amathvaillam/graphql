@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"forum/controller"
 	"net/http"
-	"os"
 	"path"
 	"strings"
 
@@ -68,31 +67,28 @@ func (cr *customRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	if len(os.Args) == 1 {
+	router := &customRouter{getMux(), make(map[string]http.HandlerFunc)}
 
-		router := &customRouter{getMux(), make(map[string]http.HandlerFunc)}
+	ct := controller.NewController()
 
-		ct := controller.NewController()
+	signInHandler := controller.NewConnexionController(ct).SignInHandler
+	signOutHandler := controller.NewConnexionController(ct).SignOutHandler
+	IndexHtml := func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, path.Join("frontend", "index.html"))
+	}
 
-		signInHandler := controller.NewConnexionController(ct).SignInHandler
-		signOutHandler := controller.NewConnexionController(ct).SignOutHandler
-		IndexHtml := func(w http.ResponseWriter, r *http.Request) {
-			http.ServeFile(w, r, path.Join("frontend", "index.html"))
-		}
+	HomeHandler := controller.NewHomeController(ct).HomeHandler
+	router.RegisterRoute("/", IndexHtml)
+	router.RegisterRoute("/api/signin", signInHandler)
+	router.RegisterRoute("/api/signout", signOutHandler)
+	router.RegisterRoute("/api/home", HomeHandler)
+	server := &http.Server{
+		Addr:    ":8080",
+		Handler: router,
+	}
 
-		HomeHandler := controller.NewHomeController(ct).HomeHandler
-		router.RegisterRoute("/", IndexHtml)
-		router.RegisterRoute("/api/signin", signInHandler)
-		router.RegisterRoute("/api/signout", signOutHandler)
-		router.RegisterRoute("/api/home", HomeHandler)
-		server := &http.Server{
-			Addr:    ":8080",
-			Handler: router,
-		}
-		fmt.Println("Server started  http://localhost:8080")
-		err1 := server.ListenAndServe()
-		if err1 != nil {
-			fmt.Println(err1)
-		}
+	err1 := server.ListenAndServe()
+	if err1 != nil {
+		fmt.Println(err1)
 	}
 }
